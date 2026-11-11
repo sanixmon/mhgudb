@@ -36,13 +36,13 @@ Versions are pinned in [`gradle/libs.versions.toml`](gradle/libs.versions.toml).
 | Concern | Choice |
 | --- | --- |
 | Language | Kotlin 2.4.21 |
-| UI | Jetpack Compose (BOM 2026.09.00), Material 3 |
+| UI | Jetpack Compose (BOM 2026.06.01), Material 3 |
 | Build | Gradle 8.13, AGP 8.13.2, Kotlin DSL, version catalog |
 | Annotation processing | KSP 2.3.12 (no kapt) |
-| DI | Hilt 2.58, `hilt-navigation-compose` 1.4.0 |
+| DI | Hilt 2.58, `hilt-navigation-compose` 1.3.0 |
 | Persistence | Room 2.8.5 with `Flow` queries |
-| Navigation | Navigation Compose 2.10.2, type-safe `@Serializable` routes |
-| Images | Coil 3.6.3 (local drawables only) |
+| Navigation | Navigation Compose 2.9.8, type-safe `@Serializable` routes |
+| Images | Coil 3.5.0 (local drawables only) |
 | Serialization | kotlinx.serialization 1.12.0 |
 | SDK | `minSdk 26`, `compileSdk`/`targetSdk` 36, JDK 17 |
 
