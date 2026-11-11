@@ -8,6 +8,7 @@ enum class LocationFilter(val label: String) {
     FOREST("Forest"),
     SNOW("Snow"),
     DESERT("Desert"),
+    VOLCANO("Volcano"),
 }
 
 data class LocationListUiState(

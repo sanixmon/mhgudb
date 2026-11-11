@@ -1,12 +1,10 @@
 package com.sanix.mhgucodex.feature.weapons.data
 
-import com.sanix.mhgucodex.data.local.DatabaseSeeder
+import com.sanix.mhgucodex.feature.weapons.domain.Sharpness
 import com.sanix.mhgucodex.feature.weapons.domain.Weapon
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 interface WeaponRepository {
@@ -17,18 +15,13 @@ interface WeaponRepository {
 @Singleton
 class WeaponRepositoryImpl @Inject constructor(
     private val dao: WeaponDao,
-    private val seeder: DatabaseSeeder,
 ) : WeaponRepository {
 
-    override fun observeWeapons(): Flow<List<Weapon>> = flow {
-        seeder.ensureSeeded()
-        emitAll(dao.observeAll().map { entities -> entities.map(WeaponEntity::toDomain) })
-    }
+    override fun observeWeapons(): Flow<List<Weapon>> =
+        dao.observeAll().map { entities -> entities.map(WeaponEntity::toDomain) }
 
-    override fun observeWeapon(weaponId: Long): Flow<Weapon?> = flow {
-        seeder.ensureSeeded()
-        emitAll(dao.observeById(weaponId).map { it?.toDomain() })
-    }
+    override fun observeWeapon(weaponId: Long): Flow<Weapon?> =
+        dao.observeById(weaponId).map { it?.toDomain() }
 }
 
 private fun WeaponEntity.toDomain(): Weapon = Weapon(
@@ -41,7 +34,8 @@ private fun WeaponEntity.toDomain(): Weapon = Weapon(
     affinity = affinity,
     element = element,
     elementValue = elementValue,
-    sharpness = sharpness,
+    sharpness = Sharpness.parse(sharpness),
+    special = special.lines().filter(String::isNotBlank),
     slots = slots,
     rarity = rarity,
     description = description,

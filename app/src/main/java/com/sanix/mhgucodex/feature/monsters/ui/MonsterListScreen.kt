@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.EmptyState
 import com.sanix.mhgucodex.core.designsystem.component.FilterChipRow
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
@@ -51,7 +50,6 @@ fun MonsterListScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Monsters") },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -86,7 +84,7 @@ fun MonsterListScreen(
                     items(uiState.monsters, key = { monster -> monster.id }) { monster ->
                         MhguListRow(
                             title = monster.name,
-                            subtitle = "${monster.type} · ${if (monster.isLarge) "Large" else "Small"}",
+                            subtitle = monster.type,
                             iconRes = R.drawable.ic_pets,
                             onClick = { onMonsterClick(monster.id) },
                         )

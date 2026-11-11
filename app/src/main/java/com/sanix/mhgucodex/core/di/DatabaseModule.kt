@@ -3,7 +3,6 @@ package com.sanix.mhgucodex.core.di
 import android.content.Context
 import androidx.room.Room
 import com.sanix.mhgucodex.data.local.MhguDatabase
-import com.sanix.mhgucodex.data.local.SeedDao
 import com.sanix.mhgucodex.feature.armor.data.ArmorDao
 import com.sanix.mhgucodex.feature.decorations.data.DecorationDao
 import com.sanix.mhgucodex.feature.items.data.ItemDao
@@ -17,6 +16,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.zip.GZIPInputStream
 import javax.inject.Singleton
 
 @Module
@@ -24,11 +24,18 @@ import javax.inject.Singleton
 object DatabaseModule {
 
     private const val DATABASE_NAME = "mhgu_codex.db"
+    private const val DATABASE_ASSET = "databases/mhgu_codex.db.gz"
 
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): MhguDatabase =
-        Room.databaseBuilder(context, MhguDatabase::class.java, DATABASE_NAME).build()
+        Room.databaseBuilder(context, MhguDatabase::class.java, DATABASE_NAME)
+            // The bundled database is gzip-compressed to keep the repository small; Room copies
+            // it into app storage on first open.
+            .createFromInputStream { GZIPInputStream(context.assets.open(DATABASE_ASSET)) }
+            // The data is read-only, so a schema bump simply replaces it with the new asset.
+            .fallbackToDestructiveMigration(dropAllTables = true)
+            .build()
 
     @Provides
     fun provideMonsterDao(database: MhguDatabase): MonsterDao = database.monsterDao()
@@ -53,7 +60,4 @@ object DatabaseModule {
 
     @Provides
     fun provideLocationDao(database: MhguDatabase): LocationDao = database.locationDao()
-
-    @Provides
-    fun provideSeedDao(database: MhguDatabase): SeedDao = database.seedDao()
 }

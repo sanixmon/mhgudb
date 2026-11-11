@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.EmptyState
 import com.sanix.mhgucodex.core.designsystem.component.FilterChipRow
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
@@ -51,7 +50,6 @@ fun WeaponListScreen(
         topBar = {
             TopAppBar(
                 title = { Text("Weapons") },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -86,8 +84,11 @@ fun WeaponListScreen(
                     items(uiState.weapons, key = { weapon -> weapon.id }) { weapon ->
                         MhguListRow(
                             title = weapon.name,
-                            subtitle = "${weapon.type} · ${weapon.element}",
+                            subtitle = listOf(weapon.type, weapon.element, "Rarity ${weapon.rarity}")
+                                .filter(String::isNotBlank)
+                                .joinToString(" · "),
                             iconRes = R.drawable.ic_swords,
+                            trailing = "ATK ${weapon.attack}",
                             onClick = { onWeaponClick(weapon.id) },
                         )
                     }

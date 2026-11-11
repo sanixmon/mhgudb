@@ -1,10 +1,9 @@
 package com.sanix.mhgucodex.feature.skills.data
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Entity(tableName = "skills")
 data class SkillEntity(
     @PrimaryKey val id: Long,
@@ -15,8 +14,7 @@ data class SkillEntity(
     val description: String,
 )
 
-@Serializable
-@Entity(tableName = "skill_levels")
+@Entity(tableName = "skill_levels", indices = [Index("skillId")])
 data class SkillLevelEntity(
     @PrimaryKey val id: Long,
     val skillId: Long,
@@ -24,7 +22,6 @@ data class SkillLevelEntity(
     val effect: String,
 )
 
-@Serializable
 @Entity(tableName = "skill_armor_sources", primaryKeys = ["skillId", "armorName"])
 data class SkillArmorSourceEntity(
     val skillId: Long,
@@ -32,7 +29,6 @@ data class SkillArmorSourceEntity(
     val points: Int,
 )
 
-@Serializable
 @Entity(tableName = "skill_decoration_sources", primaryKeys = ["skillId", "decorationName"])
 data class SkillDecorationSourceEntity(
     val skillId: Long,

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ArmorDao {
 
-    @Query("SELECT * FROM armor ORDER BY setName, piece")
+    @Query("SELECT * FROM armor ORDER BY setName, id")
     fun observeAll(): Flow<List<ArmorEntity>>
 
     @Query("SELECT * FROM armor WHERE id = :armorId")

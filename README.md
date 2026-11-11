@@ -2,29 +2,32 @@
 
 [![Android CI](https://github.com/sanixmon/mhgudb/actions/workflows/android.yml/badge.svg)](https://github.com/sanixmon/mhgudb/actions/workflows/android.yml)
 
-An offline Android database app scaffold for Monster Hunter Generations Ultimate
-reference content. This repository contains **structure and placeholder data
-only** — no real monster, weapon, armor, item, quest, skill, decoration, or map
-data is bundled.
+An offline Android reference app for Monster Hunter Generations Ultimate. It ships
+the full English dataset from
+[MHGenDatabase](https://github.com/gatheringhallstudios/MHGenDatabase) (MIT) as a
+prebuilt Room database: 129 monsters, 10,877 weapons, 5,637 armor pieces, 2,901
+items, 1,355 quests, 205 skill trees, 242 decorations, and 31 locations.
 
 The app is a single-module Kotlin/Jetpack Compose project built around
 unidirectional data flow: Room is the source of truth, repositories expose
 `Flow`s, ViewModels expose a single `StateFlow<UiState>`, and screens are
 stateless composables driven by state plus callbacks.
 
-## What is in the scaffold
+## Features
 
 - Five bottom-navigation destinations: **Monsters**, **Weapons**, **Armor**,
   **Items**, **More**.
 - Eight catalog features with list + detail screens: monsters, weapons, armor,
   items, quests, skills, decorations, locations.
-- Detail layouts covering weaknesses, hitzones, drops by rank, habitats, weapon
-  stats and sharpness, armor resistances and skills, item sources/usages, quest
-  objectives/monsters/rewards, skill thresholds and sources, decoration slots,
-  and map monsters/gathering points.
+- Detail layouts covering weaknesses (per monster state), hitzones, drops by
+  rank, habitats, weapon stats, sharpness gauges (base / +1 / +2) and
+  type-specific stats (phial, shelling, notes, ammo), armor resistances and
+  skills, item sources (carves, gathering, quest rewards, combining) and usages
+  (crafting, upgrades, combining), quest objectives/monsters/rewards, skill
+  thresholds and sources, decoration recipes, and map monsters/gathering points.
 - Material 3 theme with dynamic color on Android 12+ and a static light/dark
   fallback, shared design-system components with Compose previews, type-safe
-  Navigation Compose routes, Hilt DI, and Room with a bundled JSON seed.
+  Navigation Compose routes, Hilt DI, and Room opened from a bundled database.
 - Edge-to-edge layout with window insets handled once in `MhguApp`; content is
   capped at 840dp and centered so the same UI works on phones and tablets.
 - No `INTERNET` permission and `allowBackup="false"`; everything is local.
@@ -58,10 +61,10 @@ domain/        plain data models (no Android or Room types)
 data/          Room entities + DAOs, repository interfaces/implementations
    │
    ▼
-Room ── seeded once from assets/seed/placeholder_seed.json
+Room ── copied once from assets/databases/mhgu_codex.db.gz
 ```
 
-Rules used throughout the scaffold:
+Rules used throughout the app:
 
 - Composables never read the database and never hold business state.
 - A `*ScreenRoute` composable collects the ViewModel state and forwards
@@ -70,13 +73,14 @@ Rules used throughout the scaffold:
   `Flow` into one immutable UiState.
 - Domain models are separate from Room entities so the data layer can be
   replaced (for example with a prebuilt SQLite asset) without touching the UI.
-- Cross-reference tables use composite primary keys, so re-seeding is
-  idempotent.
+- The database is read-only reference data. Cross-reference columns are
+  indexed, and display strings (for example "Rathalos · High Rank · Tail Carve
+  · 7%") are prepared by the build script, so the app needs no joins.
 
 ### Data flow
 
 ```
-Room DAO Flow ──► Repository (seeding + entity→domain mapping)
+Room DAO Flow ──► Repository (entity→domain mapping)
                         │
                         ▼
               ViewModel combine(search, filter, data)
@@ -95,13 +99,12 @@ app/src/main/java/com/sanix/mhgucodex/
 │   ├── designsystem/
 │   │   ├── component/              SearchBar, FilterChipRow, StatBar, ElementIcon,
 │   │   │                           SectionHeader, EmptyState, ErrorState,
-│   │   │                           LoadingState, MhguListRow, DetailRow, DemoLabel
+│   │   │                           LoadingState, MhguListRow, DetailRow
 │   │   └── theme/                  Color, Type, Shape, Theme
 │   ├── di/                         DatabaseModule, RepositoryModule
 │   └── navigation/                 Routes, TopLevelDestination, MhguBottomBar,
 │                                   MhguApp, MhguNavHost
-├── data/local/                     MhguDatabase (23 entities), SeedDao,
-│                                   SeedModels, DatabaseSeeder
+├── data/local/                     MhguDatabase (23 entities)
 └── feature/
     ├── monsters/{data,domain,ui}
     ├── weapons/{data,domain,ui}
@@ -114,9 +117,11 @@ app/src/main/java/com/sanix/mhgucodex/
     └── more/ui/                    secondary navigation + about/disclaimer
 ```
 
-`app/src/main/assets/seed/placeholder_seed.json` is the single seed document.
-`DatabaseSeeder` checks the `monsters` table count under a `Mutex`, parses the
-JSON, and inserts every table in one Room transaction.
+`app/src/main/assets/databases/mhgu_codex.db.gz` holds the whole dataset.
+`DatabaseModule` opens it with `createFromInputStream` (gunzipping on the fly),
+so Room copies it into app storage on first launch. Schema changes bump the
+database version; `fallbackToDestructiveMigration` then replaces the old copy
+with the new asset.
 
 ### Database tables
 
@@ -153,8 +158,8 @@ detail screens. Detail ViewModels read their arguments with
 
 ## Build and test
 
-All builds for this project are verified by GitHub Actions; the scaffold was
-not compiled locally. To build on a machine that has JDK 17 and the Android SDK:
+All builds for this project are verified by GitHub Actions; nothing is compiled
+locally. To build on a machine that has JDK 17 and the Android SDK:
 
 ```bash
 ./gradlew :app:assembleDebug
@@ -170,9 +175,12 @@ The debug APK is written to `app/build/outputs/apk/debug/`.
 push and pull request with JDK 17 (Temurin), Gradle dependency caching via
 `gradle/actions/setup-gradle`, and these gates:
 
-1. `:app:assembleDebug`
-2. `:app:testDebugUnitTest`
-3. `:app:lintDebug`
+1. `:app:assembleDebug` (also exports the Room schema to `app/schemas/`)
+2. `tools/verify_room_schema.py` — fails if the bundled database's tables,
+   columns, keys, indices or version differ from what Room expects. Room would
+   otherwise only reject it at runtime on a device.
+3. `:app:testDebugUnitTest`
+4. `:app:lintDebug`
 
 On success it uploads the APK as the **`mhgu-codex-debug-apk`** artifact. On
 failure it uploads lint/test reports as **`ci-reports`**. Concurrent runs for the
@@ -186,18 +194,19 @@ Using a hypothetical `Palicoes` catalog as the example:
    `@Serializable data class PalicoDetailRoute(val palicoId: Long)` to
    `core/navigation/Routes.kt`.
 2. **Data** — create `feature/palicoes/data/PalicoEntities.kt` and
-   `PalicoDao.kt`. Use `@Entity`, `@PrimaryKey`, `@Serializable`, and return
-   `Flow<List<...>>` from DAO queries.
+   `PalicoDao.kt`. Use `@Entity`, `@PrimaryKey`, and return
+   `Flow<List<...>>` from DAO queries. Add `indices = [Index("...")]` for
+   columns that detail queries filter on.
 3. **Domain** — add plain data classes in `feature/palicoes/domain/` with no
    Room annotations.
 4. **Repository** — define `PalicoRepository` and `PalicoRepositoryImpl` in the
-   data package. Call `seeder.ensureSeeded()` before observing the DAO, and map
-   entities to domain models.
-5. **DI** — register the new DAO in `MhguDatabase` and `DatabaseModule`, insert
-   its tables in `SeedDao`/`DatabaseSeeder`, and `@Binds` the repository in
-   `RepositoryModule`.
-6. **Seed** — add the new lists to `PlaceholderSeed`, the asset JSON, and the
-   `insert()` order in `DatabaseSeeder`.
+   data package, mapping DAO entities to domain models.
+5. **DI** — register the new DAO in `MhguDatabase` and `DatabaseModule`, and
+   `@Binds` the repository in `RepositoryModule`.
+6. **Data** — add the tables to `TABLES` in `tools/build_database.py` (same
+   columns, nullability, primary key and indices as the entities), fill them in
+   `build()`, bump `DB_VERSION` together with `MhguDatabase.version`, and
+   regenerate the asset.
 7. **State + ViewModel** — add `PalicoUiState.kt` and `PalicoViewModels.kt`.
    Combine search/filter `MutableStateFlow`s with the repository flow and expose
    one `StateFlow`.
@@ -212,22 +221,37 @@ Using a hypothetical `Palicoes` catalog as the example:
 Keep new code inside the existing `data` / `domain` / `ui` split and reuse
 `core/designsystem` components rather than introducing one-off styles.
 
-## Placeholder data
+## Data
 
-Every seeded display name starts with `Placeholder` and every description says
-it is a demo record. The dataset exists to prove that each list, detail section,
-filter, and cross-reference renders — it is **not** game data and must not be
-used for play.
+The bundled database is generated from MHGenDatabase's `mhgu.db` (upstream
+`app/src/main/assets/databases/mhgu.db.zip`, last updated December 2018):
 
-To ship real data later, the intended path is to keep the same domain models and
-repositories but replace `DatabaseSeeder` with a Room `createFromAsset(...)`
-database built from a licensed dataset. A known candidate is
-[`gatheringhallstudios/MHGenDatabase`](https://github.com/gatheringhallstudios/MHGenDatabase)
-(MIT, ships `mhgu.db`); review its license and attribution requirements before
-redistributing any data or icons. That database is not included here.
+```bash
+unzip mhgu.db.zip -d /tmp/mhgu
+python3 tools/build_database.py /tmp/mhgu/mhgu.db
+```
+
+The script needs only the Python 3 standard library. It writes
+`app/src/main/assets/databases/mhgu_codex.db.gz` (about 4 MB, 17 MB unpacked)
+and is deterministic, so regenerating it from the same source gives the same file.
+Some fields are derived during conversion and are not in upstream:
+
+- Item categories (Consumable, Material, Ore, Ticket, Other) come from the item
+  icon. Weapons, armor and Palico gear are not listed as items.
+- Location terrain (Forest, Snow, Desert, Volcano, Arena, Special) is a fixed
+  mapping in the script.
+- Skill "category" means whether a decoration exists for the tree ("Jewel") or
+  it only comes from armor ("Armor only").
+- "Guild" quests are labelled "Hub".
 
 ## Attribution
 
+- Game data: [MHGenDatabase](https://github.com/gatheringhallstudios/MHGenDatabase)
+  by Gathering Hall Studios, MIT License, Copyright (c) 2014 DavianCorp. See
+  [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+- Monster Hunter is a trademark of Capcom. This is an unofficial fan project and
+  is not affiliated with or endorsed by Capcom.
 - Icons are Material Symbols (Apache License 2.0), converted to Android vector
   drawables. No Monster Hunter artwork is bundled.
-- No license file is included yet; add one before distributing the project.
+- No license file is included for this project's own code yet; add one before
+  distributing it.

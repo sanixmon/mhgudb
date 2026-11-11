@@ -23,13 +23,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.DetailRow
 import com.sanix.mhgucodex.core.designsystem.component.ElementIcon
 import com.sanix.mhgucodex.core.designsystem.component.ErrorState
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
 import com.sanix.mhgucodex.core.designsystem.component.SectionHeader
-import com.sanix.mhgucodex.core.designsystem.component.StatBar
 import com.sanix.mhgucodex.feature.weapons.domain.Weapon
 
 @Composable
@@ -59,7 +57,6 @@ fun WeaponDetailScreen(
                         )
                     }
                 },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -75,7 +72,7 @@ fun WeaponDetailScreen(
             ) {
                 ErrorState(
                     title = "Weapon not found",
-                    message = "This placeholder record is not part of the demo seed.",
+                    message = "This weapon is not in the database.",
                 )
             }
 
@@ -121,31 +118,42 @@ private fun WeaponDetailContent(
             DetailRow(label = "Affinity", value = "${weapon.affinity}%")
             DetailRow(
                 label = "Element",
-                value = if (weapon.elementValue == 0) {
+                value = if (weapon.element.isBlank()) {
+                    "None"
+                } else if (weapon.elementValue == 0) {
                     weapon.element
                 } else {
                     "${weapon.element} ${weapon.elementValue}"
                 },
             )
             DetailRow(label = "Slots", value = weapon.slots)
-            DetailRow(label = "Sharpness", value = "${weapon.sharpness}%")
+            weapon.special.forEach { line ->
+                val label = line.substringBefore(": ")
+                DetailRow(label = label, value = line.substringAfter(": "))
+            }
         }
 
-        item {
-            RowElement(
-                element = weapon.element,
-                modifier = Modifier.padding(top = 8.dp),
-            )
+        if (weapon.element.isNotBlank()) {
+            item {
+                RowElement(
+                    element = weapon.element,
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
         }
 
-        item {
-            SectionHeader(title = "Sharpness")
-            StatBar(
-                label = "Base sharpness",
-                value = weapon.sharpness,
-                maxValue = 100,
-                valueLabel = "${weapon.sharpness}%",
-            )
+        if (weapon.sharpness.isNotEmpty()) {
+            item { SectionHeader(title = "Sharpness") }
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    weapon.sharpness.forEachIndexed { index, level ->
+                        SharpnessBar(
+                            label = if (index == 0) "Base" else "Sharpness +$index",
+                            sharpness = level,
+                        )
+                    }
+                }
+            }
         }
 
         item { SectionHeader(title = "Upgrade path") }
@@ -157,7 +165,7 @@ private fun WeaponDetailContent(
                         style = MaterialTheme.typography.titleSmall,
                     )
                     Text(
-                        text = weapon.upgradeFrom ?: "Base of this placeholder tree",
+                        text = weapon.upgradeFrom?.let { "Upgrades from $it" } ?: "Base of this tree",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

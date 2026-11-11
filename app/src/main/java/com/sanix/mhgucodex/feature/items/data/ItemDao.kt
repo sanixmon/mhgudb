@@ -13,7 +13,7 @@ interface ItemDao {
     @Query("SELECT * FROM items WHERE id = :itemId")
     fun observeById(itemId: Long): Flow<ItemEntity?>
 
-    @Query("SELECT * FROM item_sources WHERE itemId = :itemId ORDER BY source")
+    @Query("SELECT * FROM item_sources WHERE itemId = :itemId ORDER BY source, id")
     fun observeSources(itemId: Long): Flow<List<ItemSourceEntity>>
 
     @Query("SELECT * FROM item_usages WHERE itemId = :itemId ORDER BY usage")

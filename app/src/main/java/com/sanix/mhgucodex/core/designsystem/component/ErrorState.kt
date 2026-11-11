@@ -56,7 +56,7 @@ private fun ErrorStatePreview() {
     MhguTheme(dynamicColor = false) {
         ErrorState(
             title = "Could not load entry",
-            message = "The placeholder record is missing.",
+            message = "The record is missing.",
             onRetry = {},
         )
     }

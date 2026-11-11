@@ -1,10 +1,9 @@
 package com.sanix.mhgucodex.feature.monsters.data
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Entity(tableName = "monsters")
 data class MonsterEntity(
     @PrimaryKey val id: Long,
@@ -15,7 +14,6 @@ data class MonsterEntity(
     val description: String,
 )
 
-@Serializable
 @Entity(tableName = "monster_weakness", primaryKeys = ["monsterId", "kind", "name"])
 data class MonsterWeaknessEntity(
     val monsterId: Long,
@@ -24,8 +22,7 @@ data class MonsterWeaknessEntity(
     val value: Int,
 )
 
-@Serializable
-@Entity(tableName = "monster_hitzones")
+@Entity(tableName = "monster_hitzones", indices = [Index("monsterId")])
 data class MonsterHitzoneEntity(
     @PrimaryKey val id: Long,
     val monsterId: Long,
@@ -40,8 +37,7 @@ data class MonsterHitzoneEntity(
     val dragon: Int,
 )
 
-@Serializable
-@Entity(tableName = "monster_drops")
+@Entity(tableName = "monster_drops", indices = [Index("monsterId")])
 data class MonsterDropEntity(
     @PrimaryKey val id: Long,
     val monsterId: Long,
@@ -51,8 +47,7 @@ data class MonsterDropEntity(
     val percent: Int,
 )
 
-@Serializable
-@Entity(tableName = "monster_habitats")
+@Entity(tableName = "monster_habitats", indices = [Index("monsterId")])
 data class MonsterHabitatEntity(
     @PrimaryKey val id: Long,
     val monsterId: Long,

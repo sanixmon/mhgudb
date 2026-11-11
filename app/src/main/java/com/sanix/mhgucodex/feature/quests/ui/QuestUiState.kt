@@ -9,6 +9,7 @@ enum class QuestFilter(val label: String) {
     HUB("Hub"),
     EVENT("Event"),
     ARENA("Arena"),
+    PERMIT("Permit"),
 }
 
 data class QuestListUiState(

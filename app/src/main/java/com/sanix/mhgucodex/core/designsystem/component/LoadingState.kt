@@ -39,6 +39,6 @@ fun LoadingState(
 @Composable
 private fun LoadingStatePreview() {
     MhguTheme(dynamicColor = false) {
-        LoadingState(message = "Loading placeholder data…")
+        LoadingState(message = "Loading…")
     }
 }

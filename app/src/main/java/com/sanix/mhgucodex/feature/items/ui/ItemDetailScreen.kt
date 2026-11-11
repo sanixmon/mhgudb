@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.DetailRow
 import com.sanix.mhgucodex.core.designsystem.component.ErrorState
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
@@ -61,7 +60,6 @@ fun ItemDetailScreen(
                         )
                     }
                 },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -77,7 +75,7 @@ fun ItemDetailScreen(
             ) {
                 ErrorState(
                     title = "Item not found",
-                    message = "This placeholder record is not part of the demo seed.",
+                    message = "This record is not in the database.",
                 )
             }
 
@@ -129,7 +127,7 @@ private fun ItemDetailContent(
         if (detail.sources.isEmpty()) {
             item {
                 Text(
-                    text = "No placeholder sources recorded.",
+                    text = "No sources recorded.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -159,7 +157,7 @@ private fun ItemDetailContent(
         if (detail.usages.isEmpty()) {
             item {
                 Text(
-                    text = "No placeholder usages recorded.",
+                    text = "No usages recorded.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.EmptyState
 import com.sanix.mhgucodex.core.designsystem.component.FilterChipRow
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
@@ -65,7 +64,6 @@ fun LocationListScreen(
                         )
                     }
                 },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->

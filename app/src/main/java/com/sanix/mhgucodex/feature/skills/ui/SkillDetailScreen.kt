@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.ErrorState
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
 import com.sanix.mhgucodex.core.designsystem.component.SectionHeader
@@ -60,7 +59,6 @@ fun SkillDetailScreen(
                         )
                     }
                 },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -76,7 +74,7 @@ fun SkillDetailScreen(
             ) {
                 ErrorState(
                     title = "Skill not found",
-                    message = "This placeholder record is not part of the demo seed.",
+                    message = "This record is not in the database.",
                 )
             }
 
@@ -146,7 +144,7 @@ private fun SkillDetailContent(
         if (detail.armorSources.isEmpty()) {
             item {
                 Text(
-                    text = "No placeholder armor sources recorded.",
+                    text = "No armor sources recorded.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -175,7 +173,7 @@ private fun SkillDetailContent(
         if (detail.decorationSources.isEmpty()) {
             item {
                 Text(
-                    text = "No placeholder decoration sources recorded.",
+                    text = "No decoration sources recorded.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

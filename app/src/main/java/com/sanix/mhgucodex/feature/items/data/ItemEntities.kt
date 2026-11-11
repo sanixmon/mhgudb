@@ -1,10 +1,9 @@
 package com.sanix.mhgucodex.feature.items.data
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Entity(tableName = "items")
 data class ItemEntity(
     @PrimaryKey val id: Long,
@@ -17,8 +16,7 @@ data class ItemEntity(
     val sellPrice: Int,
 )
 
-@Serializable
-@Entity(tableName = "item_sources")
+@Entity(tableName = "item_sources", indices = [Index("itemId")])
 data class ItemSourceEntity(
     @PrimaryKey val id: Long,
     val itemId: Long,
@@ -26,8 +24,7 @@ data class ItemSourceEntity(
     val detail: String,
 )
 
-@Serializable
-@Entity(tableName = "item_usages")
+@Entity(tableName = "item_usages", indices = [Index("itemId")])
 data class ItemUsageEntity(
     @PrimaryKey val id: Long,
     val itemId: Long,

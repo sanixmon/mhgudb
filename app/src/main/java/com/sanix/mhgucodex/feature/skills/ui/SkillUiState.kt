@@ -5,9 +5,8 @@ import com.sanix.mhgucodex.feature.skills.domain.SkillDetail
 
 enum class SkillFilter(val label: String) {
     ALL("All"),
-    OFFENSE("Offense"),
-    DEFENSE("Defense"),
-    UTILITY("Utility"),
+    JEWEL("Has jewel"),
+    ARMOR_ONLY("Armor only"),
 }
 
 data class SkillListUiState(

@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.DetailRow
 import com.sanix.mhgucodex.core.designsystem.component.ErrorState
 import com.sanix.mhgucodex.core.designsystem.component.LoadingState
@@ -61,7 +60,6 @@ fun QuestDetailScreen(
                         )
                     }
                 },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -77,7 +75,7 @@ fun QuestDetailScreen(
             ) {
                 ErrorState(
                     title = "Quest not found",
-                    message = "This placeholder record is not part of the demo seed.",
+                    message = "This record is not in the database.",
                 )
             }
 
@@ -130,7 +128,7 @@ private fun QuestDetailContent(
         if (detail.monsters.isEmpty()) {
             item {
                 Text(
-                    text = "No placeholder monsters recorded.",
+                    text = "No monsters recorded.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

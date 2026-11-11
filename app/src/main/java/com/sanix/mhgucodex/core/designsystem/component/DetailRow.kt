@@ -50,7 +50,7 @@ private fun DetailRowPreview() {
         Column(modifier = Modifier.padding(16.dp)) {
             DetailRow(label = "Type", value = "Flying Wyvern")
             DetailRow(label = "Class", value = "Large monster")
-            DetailRow(label = "Habitat", value = "Placeholder Jurassic Frontier")
+            DetailRow(label = "Habitat", value = "Jurassic Frontier")
         }
     }
 }

@@ -53,6 +53,11 @@ kotlin {
     }
 }
 
+// Room writes its schema here; CI compares it with the bundled database asset.
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 // Hilt 2.58 bundles kotlin-metadata-jvm 2.2.20, which cannot read the
 // metadata emitted by Kotlin 2.4. Force a matching reader for Hilt's
 // annotation processor classpath.

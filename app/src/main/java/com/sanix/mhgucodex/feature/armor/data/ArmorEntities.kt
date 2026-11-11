@@ -2,9 +2,7 @@ package com.sanix.mhgucodex.feature.armor.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Entity(tableName = "armor")
 data class ArmorEntity(
     @PrimaryKey val id: Long,
@@ -23,7 +21,6 @@ data class ArmorEntity(
     val description: String,
 )
 
-@Serializable
 @Entity(tableName = "armor_skills", primaryKeys = ["armorId", "skillName"])
 data class ArmorSkillEntity(
     val armorId: Long,

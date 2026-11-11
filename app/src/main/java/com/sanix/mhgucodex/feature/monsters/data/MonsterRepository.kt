@@ -1,6 +1,5 @@
 package com.sanix.mhgucodex.feature.monsters.data
 
-import com.sanix.mhgucodex.data.local.DatabaseSeeder
 import com.sanix.mhgucodex.feature.monsters.domain.Monster
 import com.sanix.mhgucodex.feature.monsters.domain.MonsterDetail
 import com.sanix.mhgucodex.feature.monsters.domain.MonsterDrop
@@ -11,8 +10,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 interface MonsterRepository {
@@ -23,36 +20,29 @@ interface MonsterRepository {
 @Singleton
 class MonsterRepositoryImpl @Inject constructor(
     private val dao: MonsterDao,
-    private val seeder: DatabaseSeeder,
 ) : MonsterRepository {
 
-    override fun observeMonsters(): Flow<List<Monster>> = flow {
-        seeder.ensureSeeded()
-        emitAll(dao.observeAll().map { entities -> entities.map(MonsterEntity::toDomain) })
-    }
+    override fun observeMonsters(): Flow<List<Monster>> =
+        dao.observeAll().map { entities -> entities.map(MonsterEntity::toDomain) }
 
-    override fun observeMonsterDetail(monsterId: Long): Flow<MonsterDetail?> = flow {
-        seeder.ensureSeeded()
-        emitAll(
-            combine(
-                dao.observeById(monsterId),
-                dao.observeWeaknesses(monsterId),
-                dao.observeHitzones(monsterId),
-                dao.observeDrops(monsterId),
-                dao.observeHabitats(monsterId),
-            ) { monster, weaknesses, hitzones, drops, habitats ->
-                monster?.let {
-                    MonsterDetail(
-                        monster = it.toDomain(),
-                        weaknesses = weaknesses.map(MonsterWeaknessEntity::toDomain),
-                        hitzones = hitzones.map(MonsterHitzoneEntity::toDomain),
-                        drops = drops.map(MonsterDropEntity::toDomain),
-                        habitats = habitats.map(MonsterHabitatEntity::toDomain),
-                    )
-                }
-            },
-        )
-    }
+    override fun observeMonsterDetail(monsterId: Long): Flow<MonsterDetail?> =
+        combine(
+            dao.observeById(monsterId),
+            dao.observeWeaknesses(monsterId),
+            dao.observeHitzones(monsterId),
+            dao.observeDrops(monsterId),
+            dao.observeHabitats(monsterId),
+        ) { monster, weaknesses, hitzones, drops, habitats ->
+            monster?.let {
+                MonsterDetail(
+                    monster = it.toDomain(),
+                    weaknesses = weaknesses.map(MonsterWeaknessEntity::toDomain),
+                    hitzones = hitzones.map(MonsterHitzoneEntity::toDomain),
+                    drops = drops.map(MonsterDropEntity::toDomain),
+                    habitats = habitats.map(MonsterHabitatEntity::toDomain),
+                )
+            }
+        }
 }
 
 private fun MonsterEntity.toDomain(): Monster = Monster(

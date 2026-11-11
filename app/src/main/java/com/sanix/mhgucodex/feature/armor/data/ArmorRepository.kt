@@ -1,6 +1,5 @@
 package com.sanix.mhgucodex.feature.armor.data
 
-import com.sanix.mhgucodex.data.local.DatabaseSeeder
 import com.sanix.mhgucodex.feature.armor.domain.Armor
 import com.sanix.mhgucodex.feature.armor.domain.ArmorDetail
 import com.sanix.mhgucodex.feature.armor.domain.ArmorSkill
@@ -8,8 +7,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 interface ArmorRepository {
@@ -20,30 +17,23 @@ interface ArmorRepository {
 @Singleton
 class ArmorRepositoryImpl @Inject constructor(
     private val dao: ArmorDao,
-    private val seeder: DatabaseSeeder,
 ) : ArmorRepository {
 
-    override fun observeArmor(): Flow<List<Armor>> = flow {
-        seeder.ensureSeeded()
-        emitAll(dao.observeAll().map { entities -> entities.map(ArmorEntity::toDomain) })
-    }
+    override fun observeArmor(): Flow<List<Armor>> =
+        dao.observeAll().map { entities -> entities.map(ArmorEntity::toDomain) }
 
-    override fun observeArmorDetail(armorId: Long): Flow<ArmorDetail?> = flow {
-        seeder.ensureSeeded()
-        emitAll(
-            combine(
-                dao.observeById(armorId),
-                dao.observeSkills(armorId),
-            ) { armor, skills ->
-                armor?.let {
-                    ArmorDetail(
-                        armor = it.toDomain(),
-                        skills = skills.map(ArmorSkillEntity::toDomain),
-                    )
-                }
-            },
-        )
-    }
+    override fun observeArmorDetail(armorId: Long): Flow<ArmorDetail?> =
+        combine(
+            dao.observeById(armorId),
+            dao.observeSkills(armorId),
+        ) { armor, skills ->
+            armor?.let {
+                ArmorDetail(
+                    armor = it.toDomain(),
+                    skills = skills.map(ArmorSkillEntity::toDomain),
+                )
+            }
+        }
 }
 
 private fun ArmorEntity.toDomain(): Armor = Armor(

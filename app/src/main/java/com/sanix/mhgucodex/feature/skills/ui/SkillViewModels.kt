@@ -34,9 +34,8 @@ class SkillListViewModel @Inject constructor(
                 skill.treeName.contains(currentQuery, ignoreCase = true)
             val matchesFilter = when (currentFilter) {
                 SkillFilter.ALL -> true
-                SkillFilter.OFFENSE -> skill.category == "Offense"
-                SkillFilter.DEFENSE -> skill.category == "Defense"
-                SkillFilter.UTILITY -> skill.category == "Utility"
+                SkillFilter.JEWEL -> skill.category == "Jewel"
+                SkillFilter.ARMOR_ONLY -> skill.category == "Armor only"
             }
             matchesQuery && matchesFilter
         }

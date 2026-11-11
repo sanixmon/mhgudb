@@ -1,10 +1,9 @@
 package com.sanix.mhgucodex.feature.locations.data
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Entity(tableName = "locations")
 data class LocationEntity(
     @PrimaryKey val id: Long,
@@ -15,15 +14,13 @@ data class LocationEntity(
     val description: String,
 )
 
-@Serializable
 @Entity(tableName = "location_monsters", primaryKeys = ["locationId", "monsterName"])
 data class LocationMonsterEntity(
     val locationId: Long,
     val monsterName: String,
 )
 
-@Serializable
-@Entity(tableName = "gathering_points")
+@Entity(tableName = "gathering_points", indices = [Index("locationId")])
 data class GatheringPointEntity(
     @PrimaryKey val id: Long,
     val locationId: Long,

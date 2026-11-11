@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface QuestDao {
 
-    @Query("SELECT * FROM quests ORDER BY rank, name")
+    @Query("SELECT * FROM quests ORDER BY id")
     fun observeAll(): Flow<List<QuestEntity>>
 
     @Query("SELECT * FROM quests WHERE id = :questId")

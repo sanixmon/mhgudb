@@ -1,10 +1,9 @@
 package com.sanix.mhgucodex.feature.quests.data
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
-@Serializable
 @Entity(tableName = "quests")
 data class QuestEntity(
     @PrimaryKey val id: Long,
@@ -18,15 +17,13 @@ data class QuestEntity(
     val description: String,
 )
 
-@Serializable
 @Entity(tableName = "quest_monsters", primaryKeys = ["questId", "monsterName"])
 data class QuestMonsterEntity(
     val questId: Long,
     val monsterName: String,
 )
 
-@Serializable
-@Entity(tableName = "quest_rewards")
+@Entity(tableName = "quest_rewards", indices = [Index("questId")])
 data class QuestRewardEntity(
     @PrimaryKey val id: Long,
     val questId: Long,

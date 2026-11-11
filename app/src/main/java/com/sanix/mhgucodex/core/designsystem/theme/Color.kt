@@ -2,7 +2,7 @@ package com.sanix.mhgucodex.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Placeholder-inspired palette. Not copied from any Monster Hunter asset.
+// Original palette. Not copied from any Monster Hunter asset.
 internal val CodexGold = Color(0xFFE8B44C)
 internal val CodexGoldContainer = Color(0xFFFFDEA1)
 internal val CodexInk = Color(0xFF1B1B16)

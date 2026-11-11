@@ -38,6 +38,7 @@ class QuestListViewModel @Inject constructor(
                 QuestFilter.HUB -> quest.type == "Hub"
                 QuestFilter.EVENT -> quest.type == "Event"
                 QuestFilter.ARENA -> quest.type == "Arena"
+                QuestFilter.PERMIT -> quest.type == "Permit"
             }
             matchesQuery && matchesFilter
         }

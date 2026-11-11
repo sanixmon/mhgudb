@@ -30,7 +30,7 @@ import com.sanix.mhgucodex.core.designsystem.theme.MhguTheme
 
 /**
  * Standard list row shared by every catalog list. Uses Coil (local drawable resources only,
- * the app has no network permission) so replacing the placeholder art later is a one-line change.
+ * the app has no network permission) so swapping in monster or item art later is a one-line change.
  */
 @Composable
 fun MhguListRow(
@@ -102,7 +102,7 @@ fun MhguListRow(
 private fun MhguListRowPreview() {
     MhguTheme(dynamicColor = false) {
         MhguListRow(
-            title = "Placeholder Rathalos",
+            title = "Rathalos",
             subtitle = "Flying Wyvern · Large",
             iconRes = R.drawable.ic_pets,
             onClick = {},

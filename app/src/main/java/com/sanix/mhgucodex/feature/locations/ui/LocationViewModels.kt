@@ -37,6 +37,7 @@ class LocationListViewModel @Inject constructor(
                 LocationFilter.FOREST -> location.terrain == "Forest"
                 LocationFilter.SNOW -> location.terrain == "Snow"
                 LocationFilter.DESERT -> location.terrain == "Desert"
+                LocationFilter.VOLCANO -> location.terrain == "Volcano"
             }
             matchesQuery && matchesFilter
         }

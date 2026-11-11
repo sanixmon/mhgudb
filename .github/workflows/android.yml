@@ -33,6 +33,12 @@ jobs:
       - name: Assemble debug APK
         run: ./gradlew :app:assembleDebug --stacktrace
 
+      - name: Verify bundled database matches the Room schema
+        run: |
+          python3 tools/verify_room_schema.py \
+            app/schemas/com.sanix.mhgucodex.data.local.MhguDatabase/2.json \
+            app/src/main/assets/databases/mhgu_codex.db.gz
+
       - name: Run unit tests
         run: ./gradlew :app:testDebugUnitTest --stacktrace
 
@@ -54,6 +60,7 @@ jobs:
         with:
           name: ci-reports
           path: |
+            app/schemas/**
             app/build/reports/**
             app/build/test-results/**
           if-no-files-found: warn

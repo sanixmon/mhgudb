@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.sanix.mhgucodex.R
-import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
 import com.sanix.mhgucodex.core.designsystem.component.MhguListRow
 import com.sanix.mhgucodex.core.designsystem.component.SectionHeader
 
@@ -31,7 +30,6 @@ fun MoreScreen(
         topBar = {
             TopAppBar(
                 title = { Text("More") },
-                actions = { DemoLabel() },
             )
         },
     ) { innerPadding ->
@@ -86,15 +84,15 @@ fun MoreScreen(
                             style = MaterialTheme.typography.titleMedium,
                         )
                         Text(
-                            text = "Offline database scaffold. Every row in this build is " +
-                                "placeholder data and is not real Monster Hunter Generations " +
-                                "Ultimate information.",
+                            text = "Offline reference for Monster Hunter Generations Ultimate. " +
+                                "Unofficial fan project, not affiliated with Capcom.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                         Text(
-                            text = "Data source and icon attribution will be added when the " +
-                                "real database replaces the demo seed.",
+                            text = "Game data from MHGenDatabase by Gathering Hall Studios " +
+                                "(MIT License, Copyright (c) 2014 DavianCorp). Icons are " +
+                                "Material Symbols (Apache License 2.0).",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(top = 8.dp),
