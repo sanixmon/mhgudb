@@ -1,0 +1,1297 @@
+{
+  "monsters": [
+    {
+      "id": 1,
+      "name": "Placeholder Forest Wyvern",
+      "type": "Flying Wyvern",
+      "isLarge": true,
+      "description": "Demo record. A placeholder flying wyvern used to exercise the monster detail layout."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Marsh Leviathan",
+      "type": "Leviathan",
+      "isLarge": true,
+      "description": "Demo record. A placeholder leviathan used to exercise the weakness and hitzone tables."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Dune Carapaceon",
+      "type": "Carapaceon",
+      "isLarge": true,
+      "description": "Demo record. A placeholder carapaceon used to exercise the drops-by-rank section."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Cave Bird Wyvern",
+      "type": "Bird Wyvern",
+      "isLarge": false,
+      "description": "Demo record. A placeholder small monster used to exercise the small/large filter."
+    }
+  ],
+  "monsterWeaknesses": [
+    {
+      "monsterId": 1,
+      "kind": "Element",
+      "name": "Fire",
+      "value": 3
+    },
+    {
+      "monsterId": 1,
+      "kind": "Element",
+      "name": "Water",
+      "value": 1
+    },
+    {
+      "monsterId": 1,
+      "kind": "Element",
+      "name": "Thunder",
+      "value": 2
+    },
+    {
+      "monsterId": 2,
+      "kind": "Element",
+      "name": "Fire",
+      "value": 1
+    },
+    {
+      "monsterId": 2,
+      "kind": "Element",
+      "name": "Water",
+      "value": 3
+    },
+    {
+      "monsterId": 2,
+      "kind": "Element",
+      "name": "Thunder",
+      "value": 2
+    },
+    {
+      "monsterId": 3,
+      "kind": "Element",
+      "name": "Fire",
+      "value": 2
+    },
+    {
+      "monsterId": 3,
+      "kind": "Element",
+      "name": "Water",
+      "value": 1
+    },
+    {
+      "monsterId": 3,
+      "kind": "Element",
+      "name": "Ice",
+      "value": 3
+    },
+    {
+      "monsterId": 4,
+      "kind": "Element",
+      "name": "Fire",
+      "value": 2
+    },
+    {
+      "monsterId": 4,
+      "kind": "Element",
+      "name": "Thunder",
+      "value": 3
+    }
+  ],
+  "monsterHitzones": [
+    {
+      "id": 1,
+      "monsterId": 1,
+      "part": "Head",
+      "slash": 65,
+      "impact": 60,
+      "shot": 55,
+      "fire": 25,
+      "water": 15,
+      "thunder": 20,
+      "ice": 10,
+      "dragon": 30
+    },
+    {
+      "id": 2,
+      "monsterId": 1,
+      "part": "Body",
+      "slash": 45,
+      "impact": 40,
+      "shot": 35,
+      "fire": 15,
+      "water": 10,
+      "thunder": 10,
+      "ice": 5,
+      "dragon": 20
+    },
+    {
+      "id": 3,
+      "monsterId": 1,
+      "part": "Tail",
+      "slash": 50,
+      "impact": 45,
+      "shot": 40,
+      "fire": 10,
+      "water": 5,
+      "thunder": 15,
+      "ice": 5,
+      "dragon": 25
+    },
+    {
+      "id": 4,
+      "monsterId": 2,
+      "part": "Head",
+      "slash": 65,
+      "impact": 60,
+      "shot": 55,
+      "fire": 25,
+      "water": 15,
+      "thunder": 20,
+      "ice": 10,
+      "dragon": 30
+    },
+    {
+      "id": 5,
+      "monsterId": 2,
+      "part": "Body",
+      "slash": 45,
+      "impact": 40,
+      "shot": 35,
+      "fire": 15,
+      "water": 10,
+      "thunder": 10,
+      "ice": 5,
+      "dragon": 20
+    },
+    {
+      "id": 6,
+      "monsterId": 2,
+      "part": "Tail",
+      "slash": 50,
+      "impact": 45,
+      "shot": 40,
+      "fire": 10,
+      "water": 5,
+      "thunder": 15,
+      "ice": 5,
+      "dragon": 25
+    },
+    {
+      "id": 7,
+      "monsterId": 3,
+      "part": "Head",
+      "slash": 65,
+      "impact": 60,
+      "shot": 55,
+      "fire": 25,
+      "water": 15,
+      "thunder": 20,
+      "ice": 10,
+      "dragon": 30
+    },
+    {
+      "id": 8,
+      "monsterId": 3,
+      "part": "Body",
+      "slash": 45,
+      "impact": 40,
+      "shot": 35,
+      "fire": 15,
+      "water": 10,
+      "thunder": 10,
+      "ice": 5,
+      "dragon": 20
+    },
+    {
+      "id": 9,
+      "monsterId": 3,
+      "part": "Tail",
+      "slash": 50,
+      "impact": 45,
+      "shot": 40,
+      "fire": 10,
+      "water": 5,
+      "thunder": 15,
+      "ice": 5,
+      "dragon": 25
+    },
+    {
+      "id": 10,
+      "monsterId": 4,
+      "part": "Head",
+      "slash": 65,
+      "impact": 60,
+      "shot": 55,
+      "fire": 25,
+      "water": 15,
+      "thunder": 20,
+      "ice": 10,
+      "dragon": 30
+    },
+    {
+      "id": 11,
+      "monsterId": 4,
+      "part": "Body",
+      "slash": 45,
+      "impact": 40,
+      "shot": 35,
+      "fire": 15,
+      "water": 10,
+      "thunder": 10,
+      "ice": 5,
+      "dragon": 20
+    },
+    {
+      "id": 12,
+      "monsterId": 4,
+      "part": "Tail",
+      "slash": 50,
+      "impact": 45,
+      "shot": 40,
+      "fire": 10,
+      "water": 5,
+      "thunder": 15,
+      "ice": 5,
+      "dragon": 25
+    }
+  ],
+  "monsterDrops": [
+    {
+      "id": 1,
+      "monsterId": 1,
+      "itemName": "Placeholder Scale",
+      "rank": "Low",
+      "method": "Body carve",
+      "percent": 35
+    },
+    {
+      "id": 2,
+      "monsterId": 1,
+      "itemName": "Placeholder Shell",
+      "rank": "Low",
+      "method": "Capture reward",
+      "percent": 20
+    },
+    {
+      "id": 3,
+      "monsterId": 1,
+      "itemName": "Placeholder Scale+",
+      "rank": "High",
+      "method": "Body carve",
+      "percent": 30
+    },
+    {
+      "id": 4,
+      "monsterId": 1,
+      "itemName": "Placeholder Gem",
+      "rank": "Master",
+      "method": "Hunt reward",
+      "percent": 3
+    },
+    {
+      "id": 5,
+      "monsterId": 2,
+      "itemName": "Placeholder Scale",
+      "rank": "Low",
+      "method": "Body carve",
+      "percent": 35
+    },
+    {
+      "id": 6,
+      "monsterId": 2,
+      "itemName": "Placeholder Shell",
+      "rank": "Low",
+      "method": "Capture reward",
+      "percent": 20
+    },
+    {
+      "id": 7,
+      "monsterId": 2,
+      "itemName": "Placeholder Scale+",
+      "rank": "High",
+      "method": "Body carve",
+      "percent": 30
+    },
+    {
+      "id": 8,
+      "monsterId": 2,
+      "itemName": "Placeholder Gem",
+      "rank": "Master",
+      "method": "Hunt reward",
+      "percent": 3
+    },
+    {
+      "id": 9,
+      "monsterId": 3,
+      "itemName": "Placeholder Scale",
+      "rank": "Low",
+      "method": "Body carve",
+      "percent": 35
+    },
+    {
+      "id": 10,
+      "monsterId": 3,
+      "itemName": "Placeholder Shell",
+      "rank": "Low",
+      "method": "Capture reward",
+      "percent": 20
+    },
+    {
+      "id": 11,
+      "monsterId": 3,
+      "itemName": "Placeholder Scale+",
+      "rank": "High",
+      "method": "Body carve",
+      "percent": 30
+    },
+    {
+      "id": 12,
+      "monsterId": 3,
+      "itemName": "Placeholder Gem",
+      "rank": "Master",
+      "method": "Hunt reward",
+      "percent": 3
+    },
+    {
+      "id": 13,
+      "monsterId": 4,
+      "itemName": "Placeholder Scale",
+      "rank": "Low",
+      "method": "Body carve",
+      "percent": 35
+    },
+    {
+      "id": 14,
+      "monsterId": 4,
+      "itemName": "Placeholder Shell",
+      "rank": "Low",
+      "method": "Capture reward",
+      "percent": 20
+    },
+    {
+      "id": 15,
+      "monsterId": 4,
+      "itemName": "Placeholder Scale+",
+      "rank": "High",
+      "method": "Body carve",
+      "percent": 30
+    },
+    {
+      "id": 16,
+      "monsterId": 4,
+      "itemName": "Placeholder Gem",
+      "rank": "Master",
+      "method": "Hunt reward",
+      "percent": 3
+    }
+  ],
+  "monsterHabitats": [
+    {
+      "id": 1,
+      "monsterId": 1,
+      "location": "Placeholder Forest",
+      "areas": "1, 2, 3"
+    },
+    {
+      "id": 2,
+      "monsterId": 1,
+      "location": "Placeholder Marsh",
+      "areas": "4, 5"
+    },
+    {
+      "id": 3,
+      "monsterId": 2,
+      "location": "Placeholder Marsh",
+      "areas": "1, 2"
+    },
+    {
+      "id": 4,
+      "monsterId": 2,
+      "location": "Placeholder Snowfield",
+      "areas": "6, 7"
+    },
+    {
+      "id": 5,
+      "monsterId": 3,
+      "location": "Placeholder Dunes",
+      "areas": "2, 3, 4"
+    },
+    {
+      "id": 6,
+      "monsterId": 3,
+      "location": "Placeholder Forest",
+      "areas": "7"
+    },
+    {
+      "id": 7,
+      "monsterId": 4,
+      "location": "Placeholder Forest",
+      "areas": "5, 6"
+    },
+    {
+      "id": 8,
+      "monsterId": 4,
+      "location": "Placeholder Dunes",
+      "areas": "1"
+    }
+  ],
+  "weapons": [
+    {
+      "id": 1,
+      "name": "Placeholder Iron Great Sword",
+      "type": "Great Sword",
+      "treeName": "Placeholder Iron Tree",
+      "upgradeFrom": null,
+      "attack": 120,
+      "affinity": 0,
+      "element": "None",
+      "elementValue": 0,
+      "sharpness": 40,
+      "slots": "—",
+      "rarity": 2,
+      "description": "Demo record. A placeholder great sword used to exercise the weapon detail layout."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Iron Long Sword",
+      "type": "Long Sword",
+      "treeName": "Placeholder Iron Tree",
+      "upgradeFrom": "Placeholder Iron Great Sword",
+      "attack": 110,
+      "affinity": 5,
+      "element": "Fire",
+      "elementValue": 90,
+      "sharpness": 45,
+      "slots": "1×1",
+      "rarity": 3,
+      "description": "Demo record. A placeholder long sword with an element and a slot."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Bone Hammer",
+      "type": "Hammer",
+      "treeName": "Placeholder Bone Tree",
+      "upgradeFrom": null,
+      "attack": 140,
+      "affinity": -10,
+      "element": "None",
+      "elementValue": 0,
+      "sharpness": 30,
+      "slots": "—",
+      "rarity": 2,
+      "description": "Demo record. A placeholder hammer with negative affinity."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Hunter Bow",
+      "type": "Bow",
+      "treeName": "Placeholder Hunter Tree",
+      "upgradeFrom": null,
+      "attack": 80,
+      "affinity": 10,
+      "element": "Water",
+      "elementValue": 60,
+      "sharpness": 35,
+      "slots": "2×1",
+      "rarity": 4,
+      "description": "Demo record. A placeholder bow used to exercise the ranged weapon filter."
+    },
+    {
+      "id": 5,
+      "name": "Placeholder Field Bowgun",
+      "type": "Light Bowgun",
+      "treeName": "Placeholder Field Tree",
+      "upgradeFrom": "Placeholder Hunter Bow",
+      "attack": 70,
+      "affinity": 0,
+      "element": "Thunder",
+      "elementValue": 75,
+      "sharpness": 30,
+      "slots": "1×1",
+      "rarity": 5,
+      "description": "Demo record. A placeholder light bowgun with a thunder element."
+    }
+  ],
+  "armor": [
+    {
+      "id": 1,
+      "name": "Placeholder Alpha Helm",
+      "setName": "Placeholder Set Alpha",
+      "piece": "Head",
+      "defense": 20,
+      "maxDefense": 60,
+      "fireRes": 2,
+      "waterRes": 0,
+      "thunderRes": -1,
+      "iceRes": 1,
+      "dragonRes": 0,
+      "slots": "1×1",
+      "rarity": 4,
+      "description": "Demo record. Placeholder head armor with an attack skill."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Alpha Mail",
+      "setName": "Placeholder Set Alpha",
+      "piece": "Body",
+      "defense": 24,
+      "maxDefense": 64,
+      "fireRes": 1,
+      "waterRes": 1,
+      "thunderRes": -1,
+      "iceRes": 1,
+      "dragonRes": 0,
+      "slots": "1×1",
+      "rarity": 4,
+      "description": "Demo record. Placeholder chest armor with an attack skill."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Alpha Braces",
+      "setName": "Placeholder Set Alpha",
+      "piece": "Arms",
+      "defense": 22,
+      "maxDefense": 62,
+      "fireRes": 1,
+      "waterRes": 0,
+      "thunderRes": 0,
+      "iceRes": 1,
+      "dragonRes": 0,
+      "slots": "—",
+      "rarity": 4,
+      "description": "Demo record. Placeholder arm armor with a health skill."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Alpha Faulds",
+      "setName": "Placeholder Set Alpha",
+      "piece": "Waist",
+      "defense": 22,
+      "maxDefense": 62,
+      "fireRes": 1,
+      "waterRes": 0,
+      "thunderRes": 0,
+      "iceRes": 1,
+      "dragonRes": 0,
+      "slots": "1×1",
+      "rarity": 4,
+      "description": "Demo record. Placeholder waist armor with a sharpness skill."
+    },
+    {
+      "id": 5,
+      "name": "Placeholder Alpha Greaves",
+      "setName": "Placeholder Set Alpha",
+      "piece": "Legs",
+      "defense": 24,
+      "maxDefense": 64,
+      "fireRes": 1,
+      "waterRes": 0,
+      "thunderRes": 0,
+      "iceRes": 1,
+      "dragonRes": 0,
+      "slots": "2×1",
+      "rarity": 4,
+      "description": "Demo record. Placeholder leg armor with an earplugs skill."
+    }
+  ],
+  "armorSkills": [
+    {
+      "armorId": 1,
+      "skillName": "Placeholder Attack Boost",
+      "points": 2
+    },
+    {
+      "armorId": 2,
+      "skillName": "Placeholder Attack Boost",
+      "points": 1
+    },
+    {
+      "armorId": 3,
+      "skillName": "Placeholder Health Boost",
+      "points": 1
+    },
+    {
+      "armorId": 4,
+      "skillName": "Placeholder Sharpness",
+      "points": 1
+    },
+    {
+      "armorId": 5,
+      "skillName": "Placeholder Earplugs",
+      "points": 1
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Placeholder Herb",
+      "category": "Consumable",
+      "rarity": 1,
+      "description": "Demo record. A placeholder herb used to exercise the item detail layout.",
+      "maxCarry": 10,
+      "buyPrice": 5,
+      "sellPrice": 1
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Ore",
+      "category": "Ore",
+      "rarity": 4,
+      "description": "Demo record. A placeholder ore used to exercise the material category filter.",
+      "maxCarry": 99,
+      "buyPrice": 0,
+      "sellPrice": 20
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Scale",
+      "category": "Material",
+      "rarity": 2,
+      "description": "Demo record. A placeholder scale used as a monster drop and quest reward.",
+      "maxCarry": 99,
+      "buyPrice": 0,
+      "sellPrice": 8
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Potion",
+      "category": "Consumable",
+      "rarity": 2,
+      "description": "Demo record. A placeholder potion used to exercise the usage list.",
+      "maxCarry": 10,
+      "buyPrice": 15,
+      "sellPrice": 3
+    }
+  ],
+  "itemSources": [
+    {
+      "id": 1,
+      "itemId": 1,
+      "source": "Gathering",
+      "detail": "Placeholder Forest, areas 1-3"
+    },
+    {
+      "id": 2,
+      "itemId": 2,
+      "source": "Mining",
+      "detail": "Placeholder Dunes, areas 2-4"
+    },
+    {
+      "id": 3,
+      "itemId": 3,
+      "source": "Monster drop",
+      "detail": "Placeholder Forest Wyvern"
+    },
+    {
+      "id": 4,
+      "itemId": 4,
+      "source": "Crafting",
+      "detail": "Combine Placeholder Herb and Placeholder Ore (demo)"
+    },
+    {
+      "id": 5,
+      "itemId": 3,
+      "source": "Quest reward",
+      "detail": "Placeholder Village Hunt"
+    }
+  ],
+  "itemUsages": [
+    {
+      "id": 1,
+      "itemId": 1,
+      "usage": "Crafting material for Placeholder Potion"
+    },
+    {
+      "id": 2,
+      "itemId": 2,
+      "usage": "Upgrade material for Placeholder Iron Tree weapons"
+    },
+    {
+      "id": 3,
+      "itemId": 3,
+      "usage": "Crafting material for Placeholder Set Alpha armor"
+    },
+    {
+      "id": 4,
+      "itemId": 4,
+      "usage": "Restores a small amount of health (demo)"
+    }
+  ],
+  "quests": [
+    {
+      "id": 1,
+      "name": "Placeholder Village Hunt",
+      "type": "Village",
+      "rank": "Low",
+      "objective": "Slay a Placeholder Forest Wyvern",
+      "locationName": "Placeholder Forest",
+      "timeLimit": 50,
+      "rewardZenny": 1200,
+      "description": "Demo record. A placeholder village quest used to exercise the quest detail layout."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Hub Hunt",
+      "type": "Hub",
+      "rank": "High",
+      "objective": "Hunt a Placeholder Marsh Leviathan",
+      "locationName": "Placeholder Marsh",
+      "timeLimit": 50,
+      "rewardZenny": 2400,
+      "description": "Demo record. A placeholder hub quest with a high rank objective."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Event Trial",
+      "type": "Event",
+      "rank": "Master",
+      "objective": "Deliver 5 Placeholder Ore",
+      "locationName": "Placeholder Dunes",
+      "timeLimit": 30,
+      "rewardZenny": 3600,
+      "description": "Demo record. A placeholder event quest with a delivery objective."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Arena Bout",
+      "type": "Arena",
+      "rank": "High",
+      "objective": "Capture a Placeholder Dune Carapaceon",
+      "locationName": "Placeholder Arena",
+      "timeLimit": 15,
+      "rewardZenny": 1800,
+      "description": "Demo record. A placeholder arena quest with a short time limit."
+    }
+  ],
+  "questMonsters": [
+    {
+      "questId": 1,
+      "monsterName": "Placeholder Forest Wyvern"
+    },
+    {
+      "questId": 2,
+      "monsterName": "Placeholder Marsh Leviathan"
+    },
+    {
+      "questId": 3,
+      "monsterName": "Placeholder Dune Carapaceon"
+    },
+    {
+      "questId": 4,
+      "monsterName": "Placeholder Dune Carapaceon"
+    },
+    {
+      "questId": 4,
+      "monsterName": "Placeholder Cave Bird Wyvern"
+    }
+  ],
+  "questRewards": [
+    {
+      "id": 1,
+      "questId": 1,
+      "itemName": "Placeholder Scale",
+      "slot": "Main",
+      "percent": 40
+    },
+    {
+      "id": 2,
+      "questId": 1,
+      "itemName": "Placeholder Ore",
+      "slot": "Sub",
+      "percent": 25
+    },
+    {
+      "id": 3,
+      "questId": 1,
+      "itemName": "Placeholder Herb",
+      "slot": "Break",
+      "percent": 15
+    },
+    {
+      "id": 4,
+      "questId": 2,
+      "itemName": "Placeholder Scale",
+      "slot": "Main",
+      "percent": 40
+    },
+    {
+      "id": 5,
+      "questId": 2,
+      "itemName": "Placeholder Ore",
+      "slot": "Sub",
+      "percent": 25
+    },
+    {
+      "id": 6,
+      "questId": 2,
+      "itemName": "Placeholder Herb",
+      "slot": "Break",
+      "percent": 15
+    },
+    {
+      "id": 7,
+      "questId": 3,
+      "itemName": "Placeholder Scale",
+      "slot": "Main",
+      "percent": 40
+    },
+    {
+      "id": 8,
+      "questId": 3,
+      "itemName": "Placeholder Ore",
+      "slot": "Sub",
+      "percent": 25
+    },
+    {
+      "id": 9,
+      "questId": 3,
+      "itemName": "Placeholder Herb",
+      "slot": "Break",
+      "percent": 15
+    },
+    {
+      "id": 10,
+      "questId": 4,
+      "itemName": "Placeholder Scale",
+      "slot": "Main",
+      "percent": 40
+    },
+    {
+      "id": 11,
+      "questId": 4,
+      "itemName": "Placeholder Ore",
+      "slot": "Sub",
+      "percent": 25
+    },
+    {
+      "id": 12,
+      "questId": 4,
+      "itemName": "Placeholder Herb",
+      "slot": "Break",
+      "percent": 15
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "name": "Placeholder Attack Boost",
+      "treeName": "Placeholder Attacker Tree",
+      "category": "Offense",
+      "maxPoints": 5,
+      "description": "Demo record. Placeholder skill that raises attack at each threshold."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Health Boost",
+      "treeName": "Placeholder Defender Tree",
+      "category": "Defense",
+      "maxPoints": 3,
+      "description": "Demo record. Placeholder skill that raises maximum health."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Sharpness",
+      "treeName": "Placeholder Blademaster Tree",
+      "category": "Offense",
+      "maxPoints": 3,
+      "description": "Demo record. Placeholder skill that improves weapon sharpness."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Earplugs",
+      "treeName": "Placeholder Utility Tree",
+      "category": "Utility",
+      "maxPoints": 3,
+      "description": "Demo record. Placeholder skill that reduces or negates roars."
+    }
+  ],
+  "skillLevels": [
+    {
+      "id": 1,
+      "skillId": 1,
+      "points": 1,
+      "effect": "Attack +3 (demo)"
+    },
+    {
+      "id": 2,
+      "skillId": 1,
+      "points": 2,
+      "effect": "Attack +6 (demo)"
+    },
+    {
+      "id": 3,
+      "skillId": 1,
+      "points": 3,
+      "effect": "Attack +9 (demo)"
+    },
+    {
+      "id": 4,
+      "skillId": 1,
+      "points": 4,
+      "effect": "Attack +12 (demo)"
+    },
+    {
+      "id": 5,
+      "skillId": 1,
+      "points": 5,
+      "effect": "Attack +15 (demo)"
+    },
+    {
+      "id": 6,
+      "skillId": 2,
+      "points": 1,
+      "effect": "Max health +10 (demo)"
+    },
+    {
+      "id": 7,
+      "skillId": 2,
+      "points": 2,
+      "effect": "Max health +20 (demo)"
+    },
+    {
+      "id": 8,
+      "skillId": 2,
+      "points": 3,
+      "effect": "Max health +30 (demo)"
+    },
+    {
+      "id": 9,
+      "skillId": 3,
+      "points": 1,
+      "effect": "Sharpness +5 (demo)"
+    },
+    {
+      "id": 10,
+      "skillId": 3,
+      "points": 2,
+      "effect": "Sharpness +10 (demo)"
+    },
+    {
+      "id": 11,
+      "skillId": 3,
+      "points": 3,
+      "effect": "Sharpness +15 (demo)"
+    },
+    {
+      "id": 12,
+      "skillId": 4,
+      "points": 1,
+      "effect": "Reduces small roars (demo)"
+    },
+    {
+      "id": 13,
+      "skillId": 4,
+      "points": 2,
+      "effect": "Negates small roars (demo)"
+    },
+    {
+      "id": 14,
+      "skillId": 4,
+      "points": 3,
+      "effect": "Negates all roars (demo)"
+    }
+  ],
+  "skillArmorSources": [
+    {
+      "skillId": 1,
+      "armorName": "Placeholder Alpha Helm",
+      "points": 2
+    },
+    {
+      "skillId": 1,
+      "armorName": "Placeholder Alpha Mail",
+      "points": 1
+    },
+    {
+      "skillId": 2,
+      "armorName": "Placeholder Alpha Braces",
+      "points": 1
+    },
+    {
+      "skillId": 3,
+      "armorName": "Placeholder Alpha Faulds",
+      "points": 1
+    },
+    {
+      "skillId": 4,
+      "armorName": "Placeholder Alpha Greaves",
+      "points": 1
+    }
+  ],
+  "skillDecorationSources": [
+    {
+      "skillId": 1,
+      "decorationName": "Placeholder Attack Jewel 1",
+      "points": 1
+    },
+    {
+      "skillId": 2,
+      "decorationName": "Placeholder Vital Jewel 1",
+      "points": 1
+    },
+    {
+      "skillId": 3,
+      "decorationName": "Placeholder Sharp Jewel 2",
+      "points": 1
+    },
+    {
+      "skillId": 4,
+      "decorationName": "Placeholder Earplug Jewel 3",
+      "points": 1
+    }
+  ],
+  "decorations": [
+    {
+      "id": 1,
+      "name": "Placeholder Attack Jewel 1",
+      "slotSize": 1,
+      "rarity": 4,
+      "obtain": "Demo: placeholder quest reward.",
+      "description": "Demo record. Placeholder one-slot attack decoration."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Vital Jewel 1",
+      "slotSize": 1,
+      "rarity": 3,
+      "obtain": "Demo: placeholder gathering reward.",
+      "description": "Demo record. Placeholder one-slot health decoration."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Sharp Jewel 2",
+      "slotSize": 2,
+      "rarity": 5,
+      "obtain": "Demo: placeholder hub quest reward.",
+      "description": "Demo record. Placeholder two-slot sharpness decoration."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Earplug Jewel 3",
+      "slotSize": 3,
+      "rarity": 6,
+      "obtain": "Demo: placeholder event quest reward.",
+      "description": "Demo record. Placeholder three-slot earplugs decoration."
+    }
+  ],
+  "decorationSkills": [
+    {
+      "decorationId": 1,
+      "skillName": "Placeholder Attack Boost",
+      "points": 1
+    },
+    {
+      "decorationId": 2,
+      "skillName": "Placeholder Health Boost",
+      "points": 1
+    },
+    {
+      "decorationId": 3,
+      "skillName": "Placeholder Sharpness",
+      "points": 1
+    },
+    {
+      "decorationId": 4,
+      "skillName": "Placeholder Earplugs",
+      "points": 1
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Placeholder Forest",
+      "mapName": "Placeholder Map 01",
+      "terrain": "Forest",
+      "areaCount": 8,
+      "description": "Demo record. A placeholder forest map used to exercise the location detail layout."
+    },
+    {
+      "id": 2,
+      "name": "Placeholder Marsh",
+      "mapName": "Placeholder Map 02",
+      "terrain": "Swamp",
+      "areaCount": 7,
+      "description": "Demo record. A placeholder marsh map with water-heavy terrain."
+    },
+    {
+      "id": 3,
+      "name": "Placeholder Dunes",
+      "mapName": "Placeholder Map 03",
+      "terrain": "Desert",
+      "areaCount": 6,
+      "description": "Demo record. A placeholder desert map used to exercise the desert filter."
+    },
+    {
+      "id": 4,
+      "name": "Placeholder Snowfield",
+      "mapName": "Placeholder Map 04",
+      "terrain": "Snow",
+      "areaCount": 8,
+      "description": "Demo record. A placeholder snow map used to exercise the snow filter."
+    }
+  ],
+  "locationMonsters": [
+    {
+      "locationId": 1,
+      "monsterName": "Placeholder Forest Wyvern"
+    },
+    {
+      "locationId": 1,
+      "monsterName": "Placeholder Cave Bird Wyvern"
+    },
+    {
+      "locationId": 2,
+      "monsterName": "Placeholder Marsh Leviathan"
+    },
+    {
+      "locationId": 2,
+      "monsterName": "Placeholder Forest Wyvern"
+    },
+    {
+      "locationId": 3,
+      "monsterName": "Placeholder Dune Carapaceon"
+    },
+    {
+      "locationId": 3,
+      "monsterName": "Placeholder Cave Bird Wyvern"
+    },
+    {
+      "locationId": 4,
+      "monsterName": "Placeholder Marsh Leviathan"
+    },
+    {
+      "locationId": 4,
+      "monsterName": "Placeholder Dune Carapaceon"
+    }
+  ],
+  "gatheringPoints": [
+    {
+      "id": 1,
+      "locationId": 1,
+      "area": "1",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Gathering",
+      "percent": 60
+    },
+    {
+      "id": 2,
+      "locationId": 1,
+      "area": "2",
+      "itemName": "Placeholder Ore",
+      "nodeType": "Mining",
+      "percent": 35
+    },
+    {
+      "id": 3,
+      "locationId": 1,
+      "area": "3",
+      "itemName": "Placeholder Scale",
+      "nodeType": "Gathering",
+      "percent": 20
+    },
+    {
+      "id": 4,
+      "locationId": 1,
+      "area": "4",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Bug net",
+      "percent": 45
+    },
+    {
+      "id": 5,
+      "locationId": 2,
+      "area": "1",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Gathering",
+      "percent": 60
+    },
+    {
+      "id": 6,
+      "locationId": 2,
+      "area": "2",
+      "itemName": "Placeholder Ore",
+      "nodeType": "Mining",
+      "percent": 35
+    },
+    {
+      "id": 7,
+      "locationId": 2,
+      "area": "3",
+      "itemName": "Placeholder Scale",
+      "nodeType": "Gathering",
+      "percent": 20
+    },
+    {
+      "id": 8,
+      "locationId": 2,
+      "area": "4",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Bug net",
+      "percent": 45
+    },
+    {
+      "id": 9,
+      "locationId": 3,
+      "area": "1",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Gathering",
+      "percent": 60
+    },
+    {
+      "id": 10,
+      "locationId": 3,
+      "area": "2",
+      "itemName": "Placeholder Ore",
+      "nodeType": "Mining",
+      "percent": 35
+    },
+    {
+      "id": 11,
+      "locationId": 3,
+      "area": "3",
+      "itemName": "Placeholder Scale",
+      "nodeType": "Gathering",
+      "percent": 20
+    },
+    {
+      "id": 12,
+      "locationId": 3,
+      "area": "4",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Bug net",
+      "percent": 45
+    },
+    {
+      "id": 13,
+      "locationId": 4,
+      "area": "1",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Gathering",
+      "percent": 60
+    },
+    {
+      "id": 14,
+      "locationId": 4,
+      "area": "2",
+      "itemName": "Placeholder Ore",
+      "nodeType": "Mining",
+      "percent": 35
+    },
+    {
+      "id": 15,
+      "locationId": 4,
+      "area": "3",
+      "itemName": "Placeholder Scale",
+      "nodeType": "Gathering",
+      "percent": 20
+    },
+    {
+      "id": 16,
+      "locationId": 4,
+      "area": "4",
+      "itemName": "Placeholder Herb",
+      "nodeType": "Bug net",
+      "percent": 45
+    }
+  ]
+}

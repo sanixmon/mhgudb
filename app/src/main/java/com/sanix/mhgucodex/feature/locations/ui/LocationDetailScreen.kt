@@ -1,0 +1,171 @@
+package com.sanix.mhgucodex.feature.locations.ui
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.sanix.mhgucodex.R
+import com.sanix.mhgucodex.core.designsystem.component.DemoLabel
+import com.sanix.mhgucodex.core.designsystem.component.ErrorState
+import com.sanix.mhgucodex.core.designsystem.component.LoadingState
+import com.sanix.mhgucodex.core.designsystem.component.SectionHeader
+import com.sanix.mhgucodex.feature.locations.domain.LocationDetail
+
+@Composable
+fun LocationDetailScreenRoute(
+    onBack: () -> Unit,
+    viewModel: LocationDetailViewModel = hiltViewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    LocationDetailScreen(uiState = uiState, onBack = onBack)
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LocationDetailScreen(
+    uiState: LocationDetailUiState,
+    onBack: () -> Unit,
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Location") },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_back),
+                            contentDescription = "Back",
+                        )
+                    }
+                },
+                actions = { DemoLabel() },
+            )
+        },
+    ) { innerPadding ->
+        when {
+            uiState.isLoading -> Box(
+                modifier = Modifier.fillMaxSize().padding(innerPadding),
+            ) {
+                LoadingState()
+            }
+
+            uiState.detail == null -> Box(
+                modifier = Modifier.fillMaxSize().padding(innerPadding),
+            ) {
+                ErrorState(
+                    title = "Location not found",
+                    message = "This placeholder record is not part of the demo seed.",
+                )
+            }
+
+            else -> LocationDetailContent(
+                detail = uiState.detail,
+                modifier = Modifier.fillMaxSize().padding(innerPadding),
+            )
+        }
+    }
+}
+
+@Composable
+private fun LocationDetailContent(
+    detail: LocationDetail,
+    modifier: Modifier = Modifier,
+) {
+    val location = detail.location
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        item {
+            Card {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(text = location.name, style = MaterialTheme.typography.headlineSmall)
+                    Text(
+                        text = "${location.mapName} · ${location.terrain} · ${location.areaCount} areas",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+            Text(
+                text = location.description,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 12.dp),
+            )
+        }
+
+        item { SectionHeader(title = "Monsters") }
+        if (detail.monsters.isEmpty()) {
+            item {
+                Text(
+                    text = "No placeholder monsters recorded.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        } else {
+            items(detail.monsters) { monster ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_pets),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                    )
+                    Text(
+                        text = monster.monsterName,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(start = 12.dp),
+                    )
+                }
+            }
+        }
+
+        item { SectionHeader(title = "Gathering points") }
+        items(detail.gatheringPoints) { point ->
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(text = point.itemName, style = MaterialTheme.typography.bodyMedium)
+                    Text(
+                        text = "Area ${point.area} · ${point.nodeType}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Text(
+                    text = "${point.percent}%",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        }
+    }
+}
