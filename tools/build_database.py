@@ -7,8 +7,9 @@ Usage:
 The source database comes from gatheringhallstudios/MHGenDatabase (MIT License,
 Copyright (c) 2014 DavianCorp), file `app/src/main/assets/databases/mhgu.db.zip`.
 
-The output is `app/src/main/assets/databases/mhgu_codex.db.gz`, opened by Room via
-`createFromInputStream`. Every CREATE statement below mirrors what Room generates
+The output is `app/src/main/assets/databases/mhgu_codex.db.gz`. The Android build
+un-gzips it into the APK as `assets/databases/mhgu_codex.db`, which Room opens via
+`createFromAsset`. Every CREATE statement below mirrors what Room generates
 for the entities in `feature/*/data/*Entities.kt`; CI checks this with
 `tools/verify_room_schema.py` against the schema Room exports during the build.
 """

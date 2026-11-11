@@ -16,7 +16,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import java.util.zip.GZIPInputStream
 import javax.inject.Singleton
 
 @Module
@@ -24,15 +23,16 @@ import javax.inject.Singleton
 object DatabaseModule {
 
     private const val DATABASE_NAME = "mhgu_codex.db"
-    private const val DATABASE_ASSET = "databases/mhgu_codex.db.gz"
+    // The repository stores `mhgu_codex.db.gz`; the Android build un-gzips `.gz` assets and
+    // drops the extension, so inside the APK the file is `mhgu_codex.db`.
+    private const val DATABASE_ASSET = "databases/mhgu_codex.db"
 
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): MhguDatabase =
         Room.databaseBuilder(context, MhguDatabase::class.java, DATABASE_NAME)
-            // The bundled database is gzip-compressed to keep the repository small; Room copies
-            // it into app storage on first open.
-            .createFromInputStream { GZIPInputStream(context.assets.open(DATABASE_ASSET)) }
+            // Room copies the bundled database into app storage on first open.
+            .createFromAsset(DATABASE_ASSET)
             // The data is read-only, so a schema bump simply replaces it with the new asset.
             .fallbackToDestructiveMigration(dropAllTables = true)
             .build()

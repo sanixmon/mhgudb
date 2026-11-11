@@ -118,8 +118,10 @@ app/src/main/java/com/sanix/mhgucodex/
 ```
 
 `app/src/main/assets/databases/mhgu_codex.db.gz` holds the whole dataset.
-`DatabaseModule` opens it with `createFromInputStream` (gunzipping on the fly),
-so Room copies it into app storage on first launch. Schema changes bump the
+The Android build un-gzips `.gz` assets and drops the extension, so the APK
+contains `assets/databases/mhgu_codex.db` (still deflate-compressed inside the
+APK). `DatabaseModule` opens that path with `createFromAsset`, and Room copies it
+into app storage on first launch. Schema changes bump the
 database version; `fallbackToDestructiveMigration` then replaces the old copy
 with the new asset.
 
@@ -181,6 +183,8 @@ push and pull request with JDK 17 (Temurin), Gradle dependency caching via
    otherwise only reject it at runtime on a device.
 3. `:app:testDebugUnitTest`
 4. `:app:lintDebug`
+5. **Launch on emulator** — installs the APK on an API 34 emulator, opens the
+   app, and fails on any crash. The logcat is uploaded as **`smoke-logcat`**.
 
 On success it uploads the APK as the **`mhgu-codex-debug-apk`** artifact. On
 failure it uploads lint/test reports as **`ci-reports`**. Concurrent runs for the
