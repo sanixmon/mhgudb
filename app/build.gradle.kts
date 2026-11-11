@@ -53,9 +53,17 @@ kotlin {
     }
 }
 
+// Hilt 2.58 bundles kotlin-metadata-jvm 2.2.20, which cannot read the
+// metadata emitted by Kotlin 2.4. Force a matching reader for Hilt's
+// annotation processor classpath.
+configurations.configureEach {
+    if (name.startsWith("hiltAnnotationProcessor")) {
+        resolutionStrategy.force("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.21")
+    }
+}
+
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.core.ktx)    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
