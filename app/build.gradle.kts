@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -53,9 +54,10 @@ kotlin {
     }
 }
 
-// Room writes its schema here; CI compares it with the bundled database asset.
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
+// Room writes its schema here; CI compares it with the bundled database asset. The Room
+// Gradle plugin (unlike a plain KSP argument) also restores it when KSP output is cached.
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 // Hilt 2.58 bundles kotlin-metadata-jvm 2.2.20, which cannot read the
